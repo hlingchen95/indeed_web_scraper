@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import numpy as np
 import pandas as pd
 import math
+from datetime import datetime, timedelta
 
 PATH = "/Users/huilingchen/Desktop/GA/chromedriver"
 driver = webdriver.Chrome(PATH)
@@ -30,6 +31,9 @@ searchLocation.send_keys("Columbus,OH")
 #set display limit of 50 results per page
 display_limit = driver.find_element_by_xpath('//select[@id="limit"]//option[@value="50"]')
 display_limit.click()
+#sort display with date
+display_sort = driver.find_element_by_xpath('//select[@id="sort"]//option[@value="date"]')
+display_sort.click()
 
 driver.implicitly_wait(3) 
 
@@ -89,7 +93,18 @@ for i in range(0,pages):
 
         #date posted
         try:
-        	date = job.find_element_by_xpath('.//span[@class="date "]').text
+            date = job.find_element_by_xpath('.//span[@class="date "]').text
+            word_list = date.split()
+
+            if word_list[0].isdigit():
+                num = int(word_list[0])
+                new_date_prior =  datetime.now() - timedelta(days = num)
+                date = new_date_prior.strftime("%m/%d/%Y")
+            elif word_list[0] == '30+':
+                new_date_prior = datetime.now()-timedelta(days=30)
+                date = new_date_prior.strftime("%m/%d/%Y")+" prior"
+            else:
+                date = datetime.now().strftime("%m/%d/%Y")
         except:
             date = "None"
 
@@ -106,9 +121,12 @@ for i in range(0,pages):
 
 # Despcriptions
 for link in links:
-    
-    driver.get(link)
-    jd = driver.find_element_by_xpath('//div[@id="jobDescriptionText"]').text
+    try:
+        driver.get(link)
+        jd = driver.find_element_by_xpath('//div[@id="jobDescriptionText"]').text
+    except:
+        jd = "None"
+
     descriptions.append(jd)
 
 
