@@ -28,12 +28,15 @@ searchLocation = driver.find_element_by_xpath('//input[@id="where"]')
 searchLocation.clear()
 searchLocation.send_keys("Columbus,OH")
 
-#set display limit of 50 results per page
+#set display limit of 20 results per page
 display_limit = driver.find_element_by_xpath('//select[@id="limit"]//option[@value="50"]')
 display_limit.click()
 #sort display with date
 display_sort = driver.find_element_by_xpath('//select[@id="sort"]//option[@value="date"]')
 display_sort.click()
+#limited to 15 days
+result_age = driver.find_element_by_xpath('//select[@id="fromage"]//option[@value="15"]')
+result_age.click()
 
 driver.implicitly_wait(3) 
 
@@ -139,7 +142,8 @@ df_da['Salary']=salaries
 df_da['Date']=dates
 df_da['Description']=descriptions
 
-df_da.to_pickle("result.pkl")
+filename = datetime.now().strftime("%m_%d_%Y") + ".pkl"
+df_da.to_pickle(filename)
 #b = pd.read_pickle("result.pkl")
 #print(b)
 
