@@ -37,5 +37,5 @@ df_da['excel_percentage'] = c['excel'].value_counts(normalize=True) * 100
 df_da['R_percentage'] = c['R'].value_counts(normalize=True) * 100 
 df_da['sql_percentage'] = c['SQL'].value_counts(normalize=True) * 100 
 
-#prints appearence freqency percentage chart
+#prints appearence freqency percentage table
 print("Percentage of appearence for tools:\n", df_da)
