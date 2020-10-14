@@ -4,4 +4,4 @@ This is a Web Scraper that pulls analytics-related job postings within columbus 
 
 # Indicator_Percentage_Calculator.py
 
-This program appends indicator column that checks whether or not certain analytic tools, such as SAS, Excel, Python, SQL, R, etc., are job requirement. This program outputs its result to .pkl file where its file name is current date_with_indicator. Besides this function, it also calculates appearence frequency percentage of each tool as return. 
+This program appends indicator column that checks whether or not certain analytic tools, such as SAS, Excel, Python, SQL, R, etc., are job requirement. This program outputs its result to .pkl file where its file name is "current date_with_indicator". Besides this function, it also calculates appearence frequency percentage for each tool in job description as return. 
