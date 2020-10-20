@@ -23,11 +23,11 @@ df['R'] = np.where(b['Description'].str.contains(' R '),'True','False')
 df['excel'] = np.where(b['Description'].str.contains('excel', flags=re.IGNORECASE),'True','False')
 
 #output result with indicators to new pickle file
-filename = datetime.now().strftime("%m_%d_%Y") + "_with_indicators.pkl"
-b.to_pickle(filename)
+filename = datetime.now().strftime("%m_%d_%Y") + "_with_indicators"
+b.to_feather(filename)
 
 #reads pickle file with indicators
-c = pd.read_pickle(filename)
+c = pd.read_feather(filename)
 
 #create appearence freqency percentage chart
 df_da = pd.DataFrame()
