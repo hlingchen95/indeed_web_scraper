@@ -142,8 +142,8 @@ df_da['Salary']=salaries
 df_da['Date']=dates
 df_da['Description']=descriptions
 
-filename = datetime.now().strftime("%m_%d_%Y") + ".pkl"
-df_da.to_pickle(filename)
+filename = datetime.now().strftime("%m_%d_%Y")
+df_da.to_feather(filename)
 #b = pd.read_pickle("result.pkl")
 #print(b)
 
