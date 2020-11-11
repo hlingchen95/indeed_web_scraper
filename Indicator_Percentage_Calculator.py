@@ -11,8 +11,8 @@ import pickle
 import re
 
 #read in datesets from source file
-source_filename = datetime.now().strftime("%m_%d_%Y") + ".pkl"
-b = pd.read_pickle(source_filename)
+source_filename = datetime.now().strftime("%m_%d_%Y")
+b = pd.read_feather(source_filename)
 
 #Add indicators R, SAS, excel, python, sql
 df = pd.DataFrame(b)
