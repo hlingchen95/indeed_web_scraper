@@ -11,8 +11,13 @@ import pickle
 import re
 
 #read in datesets from source file
+<<<<<<< HEAD
 source_filename = datetime.now().strftime("%m_%d_%Y") + ".pkl"
 b = pd.read_pickle(source_filename)
+=======
+source_filename = datetime.now().strftime("%m_%d_%Y")
+b = pd.read_feather(source_filename)
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
 
 #Add indicators R, SAS, excel, python, sql
 df = pd.DataFrame(b)
@@ -23,11 +28,19 @@ df['R'] = np.where(b['Description'].str.contains(' R '),'True','False')
 df['excel'] = np.where(b['Description'].str.contains('excel', flags=re.IGNORECASE),'True','False')
 
 #output result with indicators to new pickle file
+<<<<<<< HEAD
 filename = datetime.now().strftime("%m_%d_%Y") + "_with_indicators.pkl"
 b.to_pickle(filename)
 
 #reads pickle file with indicators
 c = pd.read_pickle(filename)
+=======
+filename = datetime.now().strftime("%m_%d_%Y") + "_with_indicators"
+b.to_feather(filename)
+
+#reads pickle file with indicators
+c = pd.read_feather(filename)
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
 
 #create appearence freqency percentage chart
 df_da = pd.DataFrame()
