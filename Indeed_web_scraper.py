@@ -8,8 +8,15 @@ import pandas as pd
 import math
 from datetime import datetime, timedelta
 
+<<<<<<< HEAD
 PATH = "/Users/huilingchen/Desktop/GA/chromedriver"
 driver = webdriver.Chrome(PATH)
+=======
+# PATH = "/Users/huilingchen/Desktop/GA/chromedriver"
+# driver = webdriver.Chrome(PATH)
+
+driver = webdriver.Chrome(executable_path=r'C:\Users\li1\Documents\work\indeed_web_scraper\chromedriver.exe')
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
 
 driver.get("https://www.indeed.com/")
 
@@ -40,9 +47,17 @@ result_age.click()
 
 driver.implicitly_wait(3) 
 
+<<<<<<< HEAD
 search_button = driver.find_element_by_xpath('//*[@id="fj"]')
 search_button.click()
 
+=======
+# push search button
+search_button = driver.find_element_by_xpath('//*[@id="fj"]')
+search_button.click()
+
+# close pup up table
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
 search_button = driver.find_element_by_xpath('//*[@id="popover-x"]')
 search_button.click()
 
@@ -59,7 +74,15 @@ locations=[]
 descriptions=[]
 dates=[]
 
+<<<<<<< HEAD
 for i in range(0,pages):
+=======
+<<<<<<< HEAD:.ipynb_checkpoints/Indeed_web_scraper-checkpoint.py
+for i in range(0,1):
+=======
+for i in range(0,pages):
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9:Indeed_web_scraper.py
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
     
     job_card = driver.find_elements_by_xpath('//div[contains(@class,"clickcard")]')
     
@@ -142,8 +165,13 @@ df_da['Salary']=salaries
 df_da['Date']=dates
 df_da['Description']=descriptions
 
+<<<<<<< HEAD
+filename = datetime.now().strftime("%m_%d_%Y") + ".pkl"
+df_da.to_pickle(filename)
+=======
 filename = datetime.now().strftime("%m_%d_%Y")
 df_da.to_feather(filename)
+>>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
 #b = pd.read_pickle("result.pkl")
 #print(b)
 
