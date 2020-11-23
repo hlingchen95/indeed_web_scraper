@@ -8,15 +8,8 @@ import pandas as pd
 import math
 from datetime import datetime, timedelta
 
-<<<<<<< HEAD
-PATH = "/Users/huilingchen/Desktop/GA/chromedriver"
+PATH = "/Users/huilingchen/Documents/GitHub/indeed_web_scraper/chromedriver"
 driver = webdriver.Chrome(PATH)
-=======
-# PATH = "/Users/huilingchen/Desktop/GA/chromedriver"
-# driver = webdriver.Chrome(PATH)
-
-driver = webdriver.Chrome(executable_path=r'C:\Users\li1\Documents\work\indeed_web_scraper\chromedriver.exe')
->>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
 
 driver.get("https://www.indeed.com/")
 
@@ -35,34 +28,23 @@ searchLocation = driver.find_element_by_xpath('//input[@id="where"]')
 searchLocation.clear()
 searchLocation.send_keys("Columbus,OH")
 
-#set display limit of 20 results per page
+#set display limit of 50 results per page
 display_limit = driver.find_element_by_xpath('//select[@id="limit"]//option[@value="50"]')
 display_limit.click()
 #sort display with date
 display_sort = driver.find_element_by_xpath('//select[@id="sort"]//option[@value="date"]')
 display_sort.click()
+
 #limited to 15 days
 result_age = driver.find_element_by_xpath('//select[@id="fromage"]//option[@value="15"]')
 result_age.click()
 
 driver.implicitly_wait(3) 
-
-<<<<<<< HEAD
-search_button = driver.find_element_by_xpath('//*[@id="fj"]')
-search_button.click()
-
-=======
 # push search button
 search_button = driver.find_element_by_xpath('//*[@id="fj"]')
 search_button.click()
 
-# close pup up table
->>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
-search_button = driver.find_element_by_xpath('//*[@id="popover-x"]')
-search_button.click()
-
-driver.implicitly_wait(3) 
-
+#Get exact search result amount
 search_count = driver.find_element_by_xpath('//div[@id="searchCount"]').text
 pages = math.ceil(int(search_count[10:13])/50)
 
@@ -74,15 +56,7 @@ locations=[]
 descriptions=[]
 dates=[]
 
-<<<<<<< HEAD
 for i in range(0,pages):
-=======
-<<<<<<< HEAD:.ipynb_checkpoints/Indeed_web_scraper-checkpoint.py
-for i in range(0,1):
-=======
-for i in range(0,pages):
->>>>>>> 121b74904a8962436cca38f078941f68c9d111d9:Indeed_web_scraper.py
->>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
     
     job_card = driver.find_elements_by_xpath('//div[contains(@class,"clickcard")]')
     
@@ -165,15 +139,9 @@ df_da['Salary']=salaries
 df_da['Date']=dates
 df_da['Description']=descriptions
 
-<<<<<<< HEAD
-filename = datetime.now().strftime("%m_%d_%Y") + ".pkl"
-df_da.to_pickle(filename)
-=======
-filename = datetime.now().strftime("%m_%d_%Y")
-df_da.to_feather(filename)
->>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
-#b = pd.read_pickle("result.pkl")
-#print(b)
+#save to feather file
+filename = datetime.now().strftime("%m_%d_%Y") 
+df_da.to_feather("/Users/huilingchen/Documents/GitHub/indeed_web_scraper/source/"+filename)
+
 
 driver.close()
-
