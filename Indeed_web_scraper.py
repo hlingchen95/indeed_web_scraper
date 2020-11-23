@@ -8,7 +8,7 @@ import pandas as pd
 import math
 from datetime import datetime, timedelta
 
-PATH = "/Users/huilingchen/Desktop/GA/chromedriver"
+PATH = "/Users/huilingchen/Documents/GitHub/indeed_web_scraper/chromedriver"
 driver = webdriver.Chrome(PATH)
 
 driver.get("https://www.indeed.com/")
@@ -43,11 +43,6 @@ driver.implicitly_wait(3)
 # push search button
 search_button = driver.find_element_by_xpath('//*[@id="fj"]')
 search_button.click()
-
-#search_button = driver.find_element_by_xpath('//*[@id="popover-x"]')
-#search_button.click()#
-
-#driver.implicitly_wait(3) 
 
 #Get exact search result amount
 search_count = driver.find_element_by_xpath('//div[@id="searchCount"]').text
