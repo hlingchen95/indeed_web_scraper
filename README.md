@@ -1,15 +1,11 @@
-# indeed_web_scraper.py
+# Job Posting Analysis
 
-<<<<<<< HEAD
+## files 
+
+- indeed_web_scraper.py
+
 This is a Web Scraper that pulls analytics-related job postings within columbus area from www.indeed.com with indicated field of Title, Company, Location, Link, Salary, Date, and Description. This program will automatically save its result to .pkl file where its file name is current date. This program needs to run in every 15 days since the maximum result age is 15 days in Indeed for new job postings.
 
-# Indicator_Percentage_Calculator.py
+- report.ipynb
 
-This program appends indicator columns that checks whether or not certain analytic tools, such as SAS, Excel, Python, SQL, R, etc., are job requirement. This program outputs its result to .pkl file where its file name is "current date_with_indicator". Besides this function, it also calculates appearence frequency percentage for each tool in job description as return. This program also needs to run in every 15 days.
-=======
-This is a Web Scraper that pulls analytics-related job postings within columbus area from www.indeed.com with indicated field of Title, Company, Location, Link, Salary, Date, and Description. This program will automatically save its result to binary file where its file name is current date. This program needs to run in every 15 days since the maximum result age is 15 days in Indeed for new job postings.
-
-# Indicator_Percentage_Calculator.py
-
-This program appends indicator columns that checks whether or not certain analytic tools, such as SAS, Excel, Python, SQL, R, etc., are job requirement. This program outputs its result to binary file where its file name is "current date_with_indicator". Besides this function, it also calculates appearence frequency percentage for each tool in job description as return. This program also needs to run in every 15 days.
->>>>>>> 121b74904a8962436cca38f078941f68c9d111d9
+report
