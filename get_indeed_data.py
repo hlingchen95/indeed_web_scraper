@@ -7,14 +7,26 @@ import numpy as np
 import pandas as pd
 import math
 from datetime import datetime, timedelta
+from selenium.webdriver.chrome.options import Options
 
-driver = webdriver.Chrome(executable_path='./chromedriver')
+CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
+WINDOW_SIZE = "1920,1080"
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+chrome_options.add_argument('--no-sandbox')
+driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,
+                          chrome_options=chrome_options
+                         )
+
+#driver = webdriver.Chrome(executable_path='chromedriver')
 
 driver.get("https://www.indeed.com/")
 
 initial_search_button = driver.find_element_by_xpath(
     '//*[@id="whatWhereFormId"]/div[3]/button')
 initial_search_button.click()
+driver.implicitly_wait(3)
 
 advanced_search = driver.find_element_by_xpath(
     "//a[contains(text(),'Advanced Job Search')]")
@@ -38,9 +50,9 @@ display_sort = driver.find_element_by_xpath(
     '//select[@id="sort"]//option[@value="date"]')
 display_sort.click()
 
-# limited to 15 days
+# limited to 7 days
 result_age = driver.find_element_by_xpath(
-    '//select[@id="fromage"]//option[@value="15"]')
+        '//select[@id="fromage"]//option[@value="7"]')
 result_age.click()
 
 driver.implicitly_wait(3)
@@ -51,6 +63,9 @@ search_button.click()
 # Get exact search result amount
 search_count = driver.find_element_by_xpath('//div[@id="searchCount"]').text
 pages = math.ceil(int(search_count[10:13])/50)
+
+print("search count: ", search_count)
+print("pages: ", pages)
 
 titles = []
 companies = []
@@ -153,3 +168,5 @@ df_da['Description'] = descriptions
 # save to feather file
 filename = datetime.now().strftime("%m_%d_%Y")
 df_da.to_feather("./source/"+filename)
+
+print("Done!")
