@@ -21,16 +21,16 @@ driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,
 
 #driver = webdriver.Chrome(executable_path='chromedriver')
 
-driver.get("https://www.indeed.com/")
+driver.get("https://www.indeed.com/advanced_search")
 
-initial_search_button = driver.find_element_by_xpath(
-    '//*[@id="whatWhereFormId"]/div[3]/button')
-initial_search_button.click()
-driver.implicitly_wait(3)
+# initial_search_button = driver.find_element_by_xpath(
+#     '//*[@id="whatWhereFormId"]/div[3]/button')
+# initial_search_button.click()
+# driver.implicitly_wait(3)
 
-advanced_search = driver.find_element_by_xpath(
-    "//a[contains(text(),'Advanced Job Search')]")
-advanced_search.click()
+# advanced_search = driver.find_element_by_xpath(
+#     "//a[contains(text(),'Advanced Job Search')]")
+# advanced_search.click()
 
 # search analyst
 search_job = driver.find_element_by_xpath('//input[@id="as_and"]')
