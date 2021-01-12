@@ -32,8 +32,8 @@ search_job.send_keys(['Analyst'])
 # search location
 searchLocation = driver.find_element_by_xpath('//input[@id="where"]')
 searchLocation.clear()
-searchLocation.send_keys("united states")
-# searchLocation.send_keys("ohio")
+# searchLocation.send_keys("united states")
+searchLocation.send_keys("ohio")
 
 # set display limit of 50 results per page
 display_limit = driver.find_element_by_xpath(
@@ -75,18 +75,25 @@ pages = math.ceil(int(num.replace(',', ''))/50)
 print(datetime.now().strftime("%m_%d_%Y"))
 print("total pages: ", pages)
 
+titles = []
 links = []
 dates = []
 
 for i in range(0, pages):
-
+    
     job_card = driver.find_elements_by_xpath(
         '//div[contains(@class,"clickcard")]')
     
+    print(len(job_card))
     for job in job_card:
         
         date = datetime.now().strftime("%m/%d/%Y")
         dates.append(date)
+        try:
+            title  = job.find_element_by_xpath('.//h2[@class="title"]//a').text
+        except:
+            title = job.find_element_by_xpath('.//h2[@class="title"]//a').get_attribute(name="title")
+        titles.append(title)   
 
         links.append(job.find_element_by_xpath(
             './/h2[@class="title"]//a').get_attribute(name="href"))
@@ -98,8 +105,9 @@ for i in range(0, pages):
     driver.execute_script("arguments[0].click();", next_page)
     
 df = pd.DataFrame()
-df['Date'] = dates
-df['Link'] = links
+df['date'] = dates
+df['title'] = titles
+df['link'] = links
 
 filename = datetime.now().strftime("Post_URL_"+"%m_%d_%Y")
 df.to_feather("./source/"+filename)
