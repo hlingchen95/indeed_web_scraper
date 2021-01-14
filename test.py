@@ -9,6 +9,6 @@ chrome_options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,
                           chrome_options=chrome_options
                          )
-driver.get("https://www.google.com")
+driver.get("https://indeed.com/advanced_search")
 print(driver.title)
 driver.close()

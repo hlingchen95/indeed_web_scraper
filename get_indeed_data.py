@@ -27,7 +27,7 @@ driver.implicitly_wait(3)
 
 # search analyst
 search_job = driver.find_element_by_xpath('//input[@id="as_and"]')
-search_job.send_keys(['Analyst'])
+search_job.send_keys(['analytics'])
 
 # search location
 searchLocation = driver.find_element_by_xpath('//input[@id="where"]')
@@ -110,4 +110,4 @@ df['title'] = titles
 df['link'] = links
 
 filename = datetime.now().strftime("Post_URL_"+"%m_%d_%Y")
-df.to_feather("./source/"+filename)
+df.to_feather("./link/"+filename)
