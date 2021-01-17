@@ -101,8 +101,9 @@ for i in range(0, pages):
 
     print("Finish the page: {}.".format(str(i+1)))
     driver.implicitly_wait(3)
-    next_page = driver.find_elements_by_xpath("//span[@class='pn']")[-1]
-    driver.execute_script("arguments[0].click();", next_page)
+    if pages > 1:
+        inext_page = driver.find_elements_by_xpath("//span[@class='pn']")[-1]
+        driver.execute_script("arguments[0].click();", next_page)
     
 df = pd.DataFrame()
 df['date'] = dates
@@ -111,3 +112,5 @@ df['link'] = links
 
 filename = datetime.now().strftime("Post_URL_"+"%m_%d_%Y")
 df.to_feather("./link/"+filename)
+
+driver.quit()
