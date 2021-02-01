@@ -79,6 +79,16 @@ titles = []
 links = []
 dates = []
 
+driver.implicitly_wait(3)
+
+try:
+    all_page = driver.find_element_by_xpath("//a[contains(., 'repeat your search with the omitted job postings included')]")
+    driver.execute_script("arguments[0].click();", all_page)
+    print("get all job postings")
+except:
+    print("no omitted job postings ")
+
+
 for i in range(0, pages):
     
     job_card = driver.find_elements_by_xpath(
