@@ -121,6 +121,6 @@ df['title'] = titles
 df['link'] = links
 
 filename = datetime.now().strftime("Post_URL_"+"%m_%d_%Y")
-df.to_feather("./link/"+filename)
+df.reset_index().to_feather("./link/"+filename)
 
 driver.quit()
